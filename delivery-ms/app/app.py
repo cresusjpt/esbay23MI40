@@ -86,6 +86,7 @@ def post_receipt_create(id):
     delivery.received = True
 
     models.db.session.commit()
+    process_ended = update_delivery_state(id)
 
     return (
         jsonify(
